@@ -123,10 +123,14 @@
         const separator = params.get("separator");
         if (separator) document.title = separator;
         if (params.has("separator")) document.title = params.get("separator");
-        document.getElementById("generate").href = buildUrl((params) => {
-          params.set("id", "new");
-          if (separator) params.set("separator", separator);
-        });
+        document.getElementById("generate").href =
+          "javascript:void(window.open(" +
+          JSON.stringify(
+            buildUrl((params) => {
+              params.set("id", "new");
+              if (separator) params.set("separator", separator);
+            }),
+          ) + "))";
         if (params.get("id") === "new") generate();
       })();
     </script>
